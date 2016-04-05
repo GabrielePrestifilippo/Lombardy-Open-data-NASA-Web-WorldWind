@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="thirdparty/bootstrap.min.css">
+    <link rel="stylesheet" href="thirdparty/jquery-ui.css">
+
+    <script src="thirdparty/external/jquery/jquery.js"></script>
+    <script src="thirdparty/bootstrap.min.js"></script>
+    <script src="thirdparty/jquery-ui.js"></script>
+
+
+    <script src="thirdparty/geojson.min.js"></script>
+    <script data-main="app" src="thirdparty/require.js"></script>
+
+    <style>
+        #canvasOne {
+            width: 100%;
+            height: auto;
+        }
+        
+        #options {
+            height: 0px;
+            position: relative;
+            line-height: 0;
+            overflow: hidden;
+            transition: all 0.5s;
+        }
+        
+        #alert {
+            visibility: hidden;
+            opacity:0;
+            transition: visibility 0s, opacity 0.5s linear;
+        }
+        
+        #infoPoint {
+            display: none;
+        }
+        
+        input {
+            margin-top: 10px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div>
+                <h2>Lombardy Open Data</h2>
+                <br>
+               
+
+
+            </div>
+           <div id="alert">
+                    <div class="alert alert-warning">
+                        <a href="#" class="close" onClick='$("#alert").css("visibility","hidden");' aria-label="close">&times;</a>
+                        <strong>Not found!</strong> Try increasing the limit or changing the keywords
+                    </div>
+
+                </div>
+            <br>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="sel1">Select Data:</label>
+                    <select class="form-control" id="type">
+
+
+                        <option value="0">Architecture</option>
+                        <option value="1">Museum</option>
+                        <option value="2">School</option>
+                        <option value="3">Drugstore</option>
+                        <option value="4">Farm House</option>
+                    </select>
+                </div>
+                <br>
+                <br>
+
+                <button id="openOptions" type="button" class="btn btn-info">Options</button>
+                <br>
+                <div id="options">
+                    <br>
+                    <input type="number" class="form-control" id="numberJson" placeholder="Limit">
+                    <br>
+                    <br>
+                    <br>
+                    <input type="text" class="form-control" id="keyword" placeholder="Keywords">
+                </div>
+
+                <br>
+                <button id="startJson" type="button" class="btn btn-info">Get Data</button>
+                <br>
+                <br>
+                <div id="infoPoint">
+                    <h3>Point Info</h3>
+                    <div id="textInfo"></div>
+                </div>
+            </div>
+            <br>
+            <br>
+
+
+            <div class="col-sm-9" id="globe">
+                <canvas width="1000" height="1000" id="canvasOne">
+                    Your browser does not support HTML5 Canvas.
+                </canvas>
+            </div>
+
+
+            <div class="row" id="treeControls"></div>
+        </div>
+
+    </div>
+
+    <script>
+        var open = 0;
+        $("#openOptions").click(function() {
+            if (!open) {
+                open = 1;
+                $("#options").css("height", "100px");
+            } else {
+                open = 0;
+                $("#options").css("height", "0px");
+            }
+        });
+    </script>
+</body>
+
+</html>
